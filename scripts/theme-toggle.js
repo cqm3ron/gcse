@@ -1,0 +1,59 @@
+document.addEventListener("DOMContentLoaded", function () {
+  var wrapper = document.querySelector(".theme-toggle-wrap");
+
+  if (!wrapper) {
+    wrapper = document.createElement("div");
+    wrapper.className = "theme-toggle-wrap";
+    wrapper.setAttribute("aria-label", "Toggle dark mode");
+    wrapper.innerHTML =
+      '<label class="switch">' +
+      '<input id="input" type="checkbox" aria-label="Dark mode">' +
+      '<div class="slider round">' +
+      '<div class="sun-moon">' +
+      '<svg id="moon-dot-1" class="moon-dot" viewBox="0 0 100 100"><circle cx="50" cy="50" r="50"></circle></svg>' +
+      '<svg id="moon-dot-2" class="moon-dot" viewBox="0 0 100 100"><circle cx="50" cy="50" r="50"></circle></svg>' +
+      '<svg id="moon-dot-3" class="moon-dot" viewBox="0 0 100 100"><circle cx="50" cy="50" r="50"></circle></svg>' +
+      '<svg id="light-ray-1" class="light-ray" viewBox="0 0 100 100"><circle cx="50" cy="50" r="50"></circle></svg>' +
+      '<svg id="light-ray-2" class="light-ray" viewBox="0 0 100 100"><circle cx="50" cy="50" r="50"></circle></svg>' +
+      '<svg id="light-ray-3" class="light-ray" viewBox="0 0 100 100"><circle cx="50" cy="50" r="50"></circle></svg>' +
+      '<svg id="cloud-1" class="cloud-dark" viewBox="0 0 100 100"><circle cx="50" cy="50" r="50"></circle></svg>' +
+      '<svg id="cloud-2" class="cloud-dark" viewBox="0 0 100 100"><circle cx="50" cy="50" r="50"></circle></svg>' +
+      '<svg id="cloud-3" class="cloud-dark" viewBox="0 0 100 100"><circle cx="50" cy="50" r="50"></circle></svg>' +
+      '<svg id="cloud-4" class="cloud-light" viewBox="0 0 100 100"><circle cx="50" cy="50" r="50"></circle></svg>' +
+      '<svg id="cloud-5" class="cloud-light" viewBox="0 0 100 100"><circle cx="50" cy="50" r="50"></circle></svg>' +
+      '<svg id="cloud-6" class="cloud-light" viewBox="0 0 100 100"><circle cx="50" cy="50" r="50"></circle></svg>' +
+      '</div>' +
+      '<div class="stars">' +
+      '<svg id="star-1" class="star" viewBox="0 0 20 20"><path d="M 0 10 C 10 10,10 10,0 10 C 10 10,10 10,10 20 C 10 10,10 10,20 10 C 10 10,10 10,10 0 C 10 10,10 10,0 10 Z"></path></svg>' +
+      '<svg id="star-2" class="star" viewBox="0 0 20 20"><path d="M 0 10 C 10 10,10 10,0 10 C 10 10,10 10,10 20 C 10 10,10 10,20 10 C 10 10,10 10,10 0 C 10 10,10 10,0 10 Z"></path></svg>' +
+      '<svg id="star-3" class="star" viewBox="0 0 20 20"><path d="M 0 10 C 10 10,10 10,0 10 C 10 10,10 10,10 20 C 10 10,10 10,20 10 C 10 10,10 10,10 0 C 10 10,10 10,0 10 Z"></path></svg>' +
+      '<svg id="star-4" class="star" viewBox="0 0 20 20"><path d="M 0 10 C 10 10,10 10,0 10 C 10 10,10 10,10 20 C 10 10,10 10,20 10 C 10 10,10 10,10 0 C 10 10,10 10,0 10 Z"></path></svg>' +
+      '</div>' +
+      '</div>' +
+      '</label>';
+    document.body.prepend(wrapper);
+  }
+
+  var themeToggle = document.getElementById("input");
+  if (!themeToggle) {
+    return;
+  }
+
+  if (localStorage.getItem("darkTheme") === "true") {
+    themeToggle.checked = true;
+    document.body.classList.add("dark-theme");
+  } else {
+    themeToggle.checked = false;
+    document.body.classList.remove("dark-theme");
+  }
+
+  themeToggle.addEventListener("change", function () {
+    if (this.checked) {
+      document.body.classList.add("dark-theme");
+      localStorage.setItem("darkTheme", "true");
+    } else {
+      document.body.classList.remove("dark-theme");
+      localStorage.setItem("darkTheme", "false");
+    }
+  });
+});
